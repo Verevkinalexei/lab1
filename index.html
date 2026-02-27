@@ -1,0 +1,118 @@
+ <!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ЛР1 – Варіант 3 (Реєстр обладнання)</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Реєстр обладнання кафедри — ЛР1 (Варіант 3)</h1>
+      <p class="hint">Ключова сутність: <strong>CheckoutRequests</strong></p>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2 id="formTitle">Додати заявку</h2>
+
+        <form id="requestForm">
+          <div class="field">
+            <label for="itemCode">Код/номер обладнання (ItemCode)</label>
+            <input id="itemCode" type="text" placeholder="Напр., PC-101 або INV-77" />
+            <p class="error-text" id="itemCodeError"></p>
+          </div>
+
+          <div class="field">
+            <label for="userName">Користувач (UserName)</label>
+            <input id="userName" type="text" placeholder="ПІБ" />
+            <p class="error-text" id="userNameError"></p>
+          </div>
+
+          <div class="field">
+            <label for="dateFrom">Дата з (DateFrom)</label>
+            <input id="dateFrom" type="date" />
+            <p class="error-text" id="dateFromError"></p>
+          </div>
+
+          <div class="field">
+            <label for="dateTo">Дата по (DateTo)</label>
+            <input id="dateTo" type="date" />
+            <p class="error-text" id="dateToError"></p>
+          </div>
+
+          <div class="field">
+            <label for="status">Статус</label>
+            <select id="status">
+              <option value="New">New</option>
+              <option value="Approved">Approved</option>
+              <option value="Returned">Returned</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+            <p class="error-text" id="statusError"></p>
+          </div>
+
+          <div class="field">
+            <label for="comment">Коментар (Comment)</label>
+            <textarea id="comment" rows="4" placeholder="Коротко опишіть потребу"></textarea>
+            <p class="error-text" id="commentError"></p>
+          </div>
+
+          <div class="buttons">
+            <button id="submitBtn" type="submit">Додати</button>
+            <button id="resetBtn" type="button">Очистити</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Список заявок</h2>
+
+        <div class="toolbar">
+          <input id="searchInput" type="text" placeholder="Пошук по коду або ПІБ" />
+
+          <select id="statusFilter">
+            <option value="">Усі статуси</option>
+            <option value="New">New</option>
+            <option value="Approved">Approved</option>
+            <option value="Returned">Returned</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+
+          <select id="sortField">
+            <option value="dateFrom">Сортувати: DateFrom</option>
+            <option value="dateTo">Сортувати: DateTo</option>
+            <option value="status">Сортувати: Status</option>
+            <option value="userName">Сортувати: UserName</option>
+            <option value="itemCode">Сортувати: ItemCode</option>
+          </select>
+
+          <button id="sortDirection" type="button">↑ ASC</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>ItemCode</th>
+                <th>UserName</th>
+                <th>DateFrom</th>
+                <th>DateTo</th>
+                <th>Status</th>
+                <th>Дії</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+
+        <p id="emptyState" class="hint">Записів поки немає. Додайте першу заявку.</p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
